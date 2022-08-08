@@ -33,28 +33,40 @@ app.get("/", (req, res) => {
   res.send("Authors API");
 });
 
-app.get("/author/1", (req, res) => {
-  res.send(`${authors[0].name}, ${authors[0].nationality}`);
-});
+// app.get("/author/1", (req, res) => {
+//   res.send(`${authors[0].name}, ${authors[0].nationality}`);
+// });
 
-app.get("/author/2", (req, res) => {
-  res.send(`${authors[1].name}, ${authors[1].nationality}`);
-});
+// app.get("/author/2", (req, res) => {
+//   res.send(`${authors[1].name}, ${authors[1].nationality}`);
+// });
 
-app.get("/author/3", (req, res) => {
-  res.send(`${authors[2].name}, ${authors[2].nationality}`);
-});
+// app.get("/author/3", (req, res) => {
+//   res.send(`${authors[2].name}, ${authors[2].nationality}`);
+// });
 
-app.get("/author/4", (req, res) => {
-  res.send(`${authors[3].name}, ${authors[3].nationality}`);
-});
+// app.get("/author/4", (req, res) => {
+//   res.send(`${authors[3].name}, ${authors[3].nationality}`);
+// });
 
-app.get("/authors/:id", (req, res) => {
+app.get("/authors/:id/", (req, res) => {
   const find = authors.find((author) => {
     return author.id === Number(req.params.id);
   });
   if (find) {
     res.send(`${find.name}, ${find.nationality}`);
+  } else {
+    res.json("pas de bol");
+  }
+});
+app.get("/authors/:id/books", (req, res) => {
+  const find = authors.find((author) => {
+    return author.id === Number(req.params.id);
+  });
+  if (find) {
+    res.send(`${find.books}`);
+  } else {
+    res.json("pas de bol");
   }
 });
 
